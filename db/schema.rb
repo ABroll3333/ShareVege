@@ -43,7 +43,8 @@ ActiveRecord::Schema.define(version: 2025_01_20_153310) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
-    t.integer "item_id"
+    t.string "item"
+    t.integer "amount"
     t.string "address"
     t.string "introduction"
     t.datetime "created_at", precision: 6, null: false

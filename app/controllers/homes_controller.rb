@@ -4,4 +4,9 @@ class HomesController < ApplicationController
 
   def about
   end
+
+  def index
+    @posts = Post.all
+    render "posts/index"  # ポストコントローラーのindexアクションを表示
+  end
 end

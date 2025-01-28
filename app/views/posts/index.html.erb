@@ -4,7 +4,12 @@
     <span>
       <%= link_to post.title, "/posts/#{post.id}" %>
     </span></br>
-    <%= image_tag post.get_image(200, 200) %>
+      <p>画像</p>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
     <p>商品紹介:<%= post.introduction %></p>
     <p>住所:<%= post.address %></p>
   </div>

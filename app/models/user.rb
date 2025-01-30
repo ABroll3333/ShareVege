@@ -4,7 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :post, dependent: :destroy
+  has_many :posts, dependent: :destroy  # 単数形の `post` ではなく複数形の `posts`
+  has_many :comments, dependent: :destroy #destroyは１：Nの関係において１を消したら関連するNも消される設定　has_manyで使えるオプション
+  has_one_attached :profile_image
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
   validates :name, presence: true
   validates :email, presence: true
   validates :postal_code, presence: true

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update]
   before_action :is_matching_login_user, only: [:new, :edit, :update]
   def new
     #Viewで渡すためのインスタンス変数に空のModelオブジェクトを生成するための記述。Post.newをPostモデルに入れる。
@@ -54,6 +55,15 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :image, :item, :amount, :address, :introduction)
   end
-  
+  def is_matching_login_user
+    if user_signed_in?
+      post = Post.find(params[:id])
+      unless post.user.id == current_user.id
+        redirect_to post_path
+      end
+    else
+      redirect_to root_path
+    end
+  end
 end
 

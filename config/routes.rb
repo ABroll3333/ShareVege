@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get 'homes/about'
   resources :users
   patch 'posts/:id' => 'posts#update', as: 'update_post'
+  get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

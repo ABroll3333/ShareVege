@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
-  before_action :is_matching_login_user, only: [:new, :edit, :update]
   def new
     #Viewで渡すためのインスタンス変数に空のModelオブジェクトを生成するための記述。Post.newをPostモデルに入れる。
     @post = Post.new

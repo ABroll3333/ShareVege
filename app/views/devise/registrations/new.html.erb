@@ -27,44 +27,42 @@
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
+          <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
+        </div>
+        <%= f.text_field :postal_code, autofocus: true, placeholder: "郵便番号", class: "form-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
+        </div>
+        <%= f.text_field :address, autofocus: true, placeholder: "住所", class: "form-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
+        </div>
+        <%= f.text_field :phone_number, autofocus: true, placeholder: "電話番号", class: "form-control" %>
+      </div>            
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
           <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
         </div>
-            <div class="field">
-              <%= f.label :郵便番号 %></br>
-              <%= f.text_field :postal_code %>
-            </div>
+        <%= f.text_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-key"></i></span>
+        </div>
+        <%= f.password_field :password, placeholder: "パスワード(#{@minimum_password_length}文字以上)", class: "form-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+        </div>
+        <%= f.password_field :password_confirmation, placeholder: "パスワード確認", class: "form-control" %>
+      </div>
+      <%= f.submit "新規登録", class: "btn btn-block btn-info mt-5" %>
+      <%= link_to "ログイン画面へ", new_user_session_path, class: "btn btn-primary btn-block mt-5" %>
+      <% end %>
 
-            <div class="field">
-              <%= f.label :住所 %></br>
-              <%= f.text_area :address %>
-            </div>
-
-            <div class="field">
-              <%= f.label :電話番号 %></br>
-              <%= f.text_field :phone_number %>
-            </div>
-            
-            <div class="field">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :password %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </div>
-
-            <div class="actions">
-              <%= f.submit "Sign up" %>
-            </div>
-          <% end %>
-
-          <%= render "devise/shared/links" %>
+          

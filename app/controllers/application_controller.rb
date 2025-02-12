@@ -1,20 +1,21 @@
 class ApplicationController < ActionController::Base
-  #deviseの機能が使用される前にconfigure_permitted_parametersのメソッドが使用される
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  #after_sign_in_pathは初期設定でroot_pathになっている。resourceという引数にはログインを実行したモデルのデータが格納されている
-  def after_sign_in_path_for(resources)
-    posts_path
+  before_action :configure_authentication
+ 
+  private
+ 
+  def configure_authentication
+    if admin_controller?
+      authenticate_admin!
+    else
+      authenticate_user! unless action_is_public?
+    end
   end
-
-
-  def after_sign_out_path_for(resources)
-    homes_about_path
+ 
+  def admin_controller?
+    self.class.module_parent_name == 'Admin'
   end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :postal_code, :address, :phone_number])
+ 
+  def action_is_public?
+    controller_name == 'homes' && action_name == 'top'
   end
 end

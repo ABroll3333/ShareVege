@@ -3,8 +3,9 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
   namespace :admin do
+    resources :dashboards
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
   
   root to: 'public/posts#index'

@@ -21,20 +21,24 @@ james = User.find_or_create_by!(email: "james@example.com") do |user|
   user.phone_number = "phone_number"
 end
 
-Post.find_or_create_by!(address: "address") do |post|
+Post.find_or_create_by!(title: "人参ができました") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpeg"), filename:"sample-post1.jpeg")
-  post.title = "人参ができました"
   post.user = olivia
   post.item = "item"
   post.amount = "amount"
+  post.address = "address"
   post.introduction = "introduction"
 end
 
-Post.find_or_create_by!(address: "address") do |post|
+Post.find_or_create_by!(title: "トマトができました") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpeg"), filename:"sample-post2.jpeg")
-  post.title = "トマトができました"
   post.user = james
   post.item = "item"
   post.amount = "amount"
+  post.address = "address"
   post.introduction = "introduction"
+end
+
+admin = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
+  admin.password = "password"
 end

@@ -52,6 +52,19 @@
               <label for="exampleFromControlTextarea1">コメントする</label>
               <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
             </div>
+            <div id="post_raty"></div>
+            <script>
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
+            
+                  elem.innerHTML = ""
+                  let opt = {  
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    };
+                  raty(elem,opt);
+            </script>
             <%= f.submit "送信", class:"btn btn-lg btn-info mt-2 float-right" %>
           <% end %>
         </div>

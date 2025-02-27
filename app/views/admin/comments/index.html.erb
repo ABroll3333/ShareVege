@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>全コメント一覧</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>コメント日時</th>
+              <th>コメント</th>
+            </tr>
+          </thead>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td><%= comment.comment %></td>
+            </tr>
+            <%= render "output_star", comment: comment %>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>

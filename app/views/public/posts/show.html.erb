@@ -39,6 +39,7 @@
                 <p><%= comment.created_at.strftime('%Y/%m/%d') %> | <%= comment.comment %></p>
               </div>
             </div>
+             <%= render "output_star", comment: comment %>
             <% if comment.user == current_user %>
               <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger pull-right" %>
             <% end %>
@@ -52,19 +53,23 @@
               <label for="exampleFromControlTextarea1">コメントする</label>
               <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
             </div>
-            <div id="post_raty"></div>
-            <script>
-                  let elem = document.querySelector('#post_raty');
-                  if (elem == null) return;
-            
-                  elem.innerHTML = ""
-                  let opt = {  
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    };
-                  raty(elem,opt);
-            </script>
+            <div class="form-group position-static">
+                <p>評価:</P>
+                <div id="comment_raty"></div> <!-- 星を出力するセレクタ -->
+                <% if @comment.id.nil? %> <!-- 新規投稿か判別 -->
+                  <script>
+                      var elem = document.querySelector('#comment_raty');
+                      var opt = {
+                          starOn: "<%= asset_path('star-on.png') %>",
+                          starOff: "<%= asset_path('star-off.png') %>",
+                          scoreName: 'comment[star]',
+                      };
+                      raty(elem,opt);
+                  </script>
+                <% else %>
+                  <%= render "output_star", comment: @comment %>
+                <% end %>
+            </div>
             <%= f.submit "送信", class:"btn btn-lg btn-info mt-2 float-right" %>
           <% end %>
         </div>

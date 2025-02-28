@@ -1,24 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4>全コメント一覧</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>コメント日時</th>
-              <th>コメント</th>
-            </tr>
-          </thead>
-          <% @comments.each do |comment| %>
-            <tr>
-              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
-            <tr>
-              <td><%= comment.comment %></td>
-            </tr>
-            <%= render "output_star", comment: comment %>
-          <% end %>
-        </table>
-    </div>
-  </div>
+<div class="container mt-5">
+<h4>全コメント一覧</h4>
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th class="col-2">名前</th>
+      <th class="col-8">コメント</th>
+      <th class="col-1"></th>
+      <th class="col-1"></th>
+    </tr>
+  </thead>
+<% @comments.each do |comment| %>
+  <tbody>
+    <tr>
+      <td class="col-2"><%= @users.find(comment.user_id).name %></td>
+      <td><%= comment.comment %></td>
+      <td class="col-8"><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+      <td class="col-1">
+      <%= link_to '削除', admin_comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+<% end %>
+</table>
 </div>

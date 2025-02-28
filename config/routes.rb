@@ -5,13 +5,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboards
     get 'dashboards', to: 'dashboards#index'
+    resources :comments, only: [:index, :create, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :posts do
-      resources :comments, only: [:index, :create, :destroy]
-    end
-  
-    resources :comments, only: [:destroy]
+
   end
+  
   root to: 'public/posts#index'
   scope module: :public do
     devise_for :users

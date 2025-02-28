@@ -3,14 +3,14 @@ class Admin::CommentsController < ApplicationController
   layout 'admin'
 
   def index
-    @post = Post.find(params[:id])
-    @comments = @post.comments.all
+    @comments = Comment.all
+    @users = User.all
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to admin_post_comments_path, notice: 'コメントを削除しました'
+    redirect_to admin_comments_path, notice: 'コメントを削除しました'
   end
 
   private

@@ -42,3 +42,35 @@ end
 admin = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
   admin.password = "password"
 end
+
+Tag.create([
+  {name: '人参'},
+  {name: 'きゅうり'},
+  {name: 'なす'},
+  {name: 'キャベツ'},
+  {name: 'ジャガイモ'},
+  {name: '白菜'},
+  {name: '長ネギ'},
+  {name: '青ネギ'},
+  {name: '長芋'},
+  {name: 'ブロッコリー'},
+  {name: 'さつまいも'},
+  {name: '小松菜'},
+  {name: 'ほうれん草'},
+  {name: '水菜'},
+  {name: '大根'},
+  {name: '椎茸'},
+  {name: '春菊'},
+  {name: 'たけのこ'},
+  {name: 'タマネギ'},
+  {name: 'トマト'},
+  {name: 'ミニトマト'},
+  {name: 'にら'},
+  {name: '枝豆'},
+  {name: 'にんにく'},
+  {name: 'モロヘイヤ'},
+  {name: 'レンコン'},
+  {name: 'レタス'},
+  {name: 'パプリカ'},
+  {name: 'オクラ'},
+])

@@ -7,6 +7,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page])
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
 
   end
 
@@ -52,7 +53,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :image, :item, :amount, :address, :introduction)
+    params.require(:post).permit(:title, :image, :item, :amount, :address, :introduction ,tag_ids: [])
   end
   def is_matching_login_user
     if user_signed_in?

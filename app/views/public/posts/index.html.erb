@@ -1,13 +1,4 @@
 
-<%= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
-      <%= select_tag :tag_id,
-                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                     {
-                       prompt: 'タグで絞り込み検索',
-                       onchange: 'submit(this.form);'
-                     }
-      %>
-    <% end %>
 <%= render '/search' %>
 <div class="card-list-container py-5">
   <% @posts.each do |post| %>
@@ -34,9 +25,9 @@
             <span><p class="card-text">数量:<%= post.amount %></p></span>
             <span><p class="card-text">商品紹介:<%= post.introduction %></p></span>
             <span><p class="card-text">住所:<%= post.address %></p></span>
-              <%= post.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
+            <td>
+              <%= link_to @posts.tag, tagsearches_search_path(content:@posts.tag) %>
+            </td>
             <span><p class="card-text">
             <%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p></span>
           </div>

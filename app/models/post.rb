@@ -2,8 +2,7 @@ class Post < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags
+
   
   def get_image
     unless image.attached?
@@ -33,6 +32,7 @@ class Post < ApplicationRecord
   validates :amount, presence: true
   validates :address, presence: true
   validates :introduction, presence: true
+  validates :tag, presence: true
 
 
 end

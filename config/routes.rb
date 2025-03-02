@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'homes/about', to: 'homes#about', as: :about
     resources :posts do
       resources :comments, only: [:create, :destroy]
+      get 'tagsearches/search', to: 'tagsearches#search'
     end
     resources :users, only: [:show, :edit, :update]
     patch 'posts/:id' => 'posts#update', as: 'update_post'

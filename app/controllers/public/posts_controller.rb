@@ -9,16 +9,16 @@ class Public::PostsController < ApplicationController
     # @posts = Post.page(params[:page])
     # @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts.page(params[:page]) : Post.all.page(params[:page])
 
-    if params[:tag_id].present?
-     @posts = Tag.find(params[:tag_id]).posts.page(params[:page])
-    #  もし↑の記述でエラーになった場合は下記を代わりに下記を試してみてください
-    #  @posts = Kaminari.paginate_array(
-    #    Tag.find(params[:tag_id]).posts
-    #  ).page(params[:page])
-    else
-     @posts = Post.all.page(params[:page])
-    end
-
+    # if params[:tag_id].present?
+    #  @posts = Tag.find(params[:tag_id]).posts.page(params[:page])
+    # #  もし↑の記述でエラーになった場合は下記を代わりに下記を試してみてください
+    # #  @posts = Kaminari.paginate_array(
+    # #    Tag.find(params[:tag_id]).posts
+    # #  ).page(params[:page])
+    # else
+    #  @posts = Post.all.page(params[:page])
+    # end
+    @post = Post.all
   end
 
   def show
@@ -63,7 +63,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :image, :item, :amount, :address, :introduction, :tag_ids)
+    params.require(:post).permit(:title, :image, :item, :amount, :address, :introduction, :tag)
   end
   def is_matching_login_user
     if user_signed_in?

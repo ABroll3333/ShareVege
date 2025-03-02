@@ -19,9 +19,9 @@
             <span><p class="card-text">数量:<%= @post.amount %></p></span>
             <span><p class="card-text">商品紹介:<%= @post.introduction %></p></span>
             <span><p class="card-text">住所:<%= @post.address %></p></span>
-              <%= @post.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
+            <td>
+            <%= link_to@post.tag, tagsearches_search_path(content:@post.tag) %>
+            </td>
             <span><p class="card-text">
             <%= link_to "#{@post.comments.count}コメント", post_path(@post.id) %></p></span>
             <span><p class="card-text">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p></span>

@@ -6,19 +6,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    # @posts = Post.page(params[:page])
-    # @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts.page(params[:page]) : Post.all.page(params[:page])
+    @posts = Post.page(params[:page])
 
-    # if params[:tag_id].present?
-    #  @posts = Tag.find(params[:tag_id]).posts.page(params[:page])
-    # #  もし↑の記述でエラーになった場合は下記を代わりに下記を試してみてください
-    # #  @posts = Kaminari.paginate_array(
-    # #    Tag.find(params[:tag_id]).posts
-    # #  ).page(params[:page])
-    # else
-    #  @posts = Post.all.page(params[:page])
-    # end
-    @post = Post.all
   end
 
   def show

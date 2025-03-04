@@ -1,38 +1,44 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <p><%= link_to "プロフィール編集", edit_user_path %></p>
-</div>
-<div class="card-list-container py-5">
-  <% @posts.each do |post| %>
-    <div class="card w-50 mx-auto mt-4 shadow-lg">
-      <%= link_to post_path(post.id) do %>
-        <% if post.image.attached? %>
-          <%= image_tag post.image, size: "100%", style: "width: 100%;" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
-        <% end %>
-      <% end %>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <p class="card-title">
-              <%= link_to(post_path(post.id), class: "text-dark") do %>
-                <strong><i class="fa-solid fa-seedling"></i><span><%= link_to post.title, "/posts/#{post.id}" %></span></strong>
-              <% end %>
-            </p>
-            <span><p class="card-text">タイトル:<%= post.title %></p></span>
-            <span><p class="card-text">商品名:<%= post.item %></p></span>
-            <span><p class="card-text">数量:<%= post.amount %></p></span>
-            <span><p class="card-text">商品紹介:<%= post.introduction %></p></span>
-            <span><p class="card-text">住所:<%= post.address %></p></span>
-            <span><p class="card-text">
-            <%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p></span>
+<div class="container">
+  <div>
+    <h3><%= @user.name %></h3>
+    <p><%= link_to "プロフィール編集", edit_user_path %></p>
+  </div>
+  <div class="row py-5">
+    <% @posts.each do |post| %>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card mt-4 shadow-lg">
+          <%= link_to post_path(post.id) do %>
+            <% if post.image.attached? %>
+              <%= image_tag post.image, size: "100%", style: "width: 100%;" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+          <% end %>
+          <div class="card-body" style="height:244px;">
+            <div class="column flex-direction:row">
+              <div class="row">
+                <div class="col-12">
+                  <p class="card-title">
+                    <%= link_to(post_path(post.id), class: "text-dark") do %>
+                      <strong><i class="fa-solid fa-seedling"></i><span><%= link_to post.title, "/posts/#{post.id}" %></span></strong>
+                    <% end %>
+                  </p>
+                  <span><p class="card-text">タイトル:<%= post.title %></p></span>
+                  <span><p class="card-text">商品名:<%= post.item %></p></span>
+                  <span><p class="card-text">数量:<%= post.amount %></p></span>
+                  <span><p class="card-text">商品紹介:<%= post.introduction %></p></span>
+                  <span><p class="card-text">住所:<%= post.address %></p></span>
+                  <span><p class="card-text">
+                  <%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <% end %>
-    <div class="d-flex justify-content-center">
-      <%= paginate @posts %>
-    </div>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @posts %>
+      </div>
+  </div>
 </div>

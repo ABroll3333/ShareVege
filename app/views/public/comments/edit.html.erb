@@ -1,0 +1,23 @@
+<h2>コメント編集</h2>
+<%= form_with model: [@post, @comment] do |f| %>
+  <label for="exampleFromControlTextarea1">コメント編集</label>
+  <%= f.text_area :comment, rows:'5', class: "form-control" %>
+    <div class="form-group position-static">
+        <p>評価:</P>
+        <div id="comment_raty"></div> <!-- 星を出力するセレクタ -->
+        <% if @comment.id.nil? %> <!-- 新規投稿か判別 -->
+          <script>
+              var elem = document.querySelector('#comment_raty');
+              var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'comment[star]',
+              };
+              raty(elem,opt);
+          </script>
+        <% else %>
+          <%= render "public/posts/output_star", comment: @comment %>
+        <% end %>
+    </div>
+  <%= f.submit "変更を保存" %>
+<% end %>

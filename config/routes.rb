@@ -15,8 +15,7 @@ Rails.application.routes.draw do
     devise_for :users
     get 'homes/about', to: 'homes#about', as: :about
     resources :posts do
-      resources :comments, only: [:create, :destroy]
-    
+      resources :comments, only: [:create, :edit, :update, :destroy]
     end
     resources :users, only: [:show, :edit, :update]
     patch 'posts/:id' => 'posts#update', as: 'update_post'

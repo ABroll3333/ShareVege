@@ -1,8 +1,6 @@
-<table align="centar">
-  <tr>
-    <td><%= render '/search' %></td>
-    <td><%= render 'tagsearches/tagsearch' %></td>
-  </tr>
+<table>
+    <tr><%= render '/search' %></tr>
+    <tr><%= render 'tagsearches/tagsearch' %></tr>
 </table>
 <div class="card-list-container py-5">
 <%= render 'index', posts: @posts %>

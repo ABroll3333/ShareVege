@@ -45,7 +45,8 @@
             </div>
              <%= render "output_star", comment: comment %>
             <% if comment.user == current_user %>
-              <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger pull-right" %>
+              <%= link_to "編集", edit_post_comment_path(comment.post, comment), class: "btn btn-primary pull-right" %>
+              <%= link_to "削除", post_comment_path(comment.post, comment),method: :delete, class: "btn btn-danger pull-right" %>
             <% end %>
           <% end %>
         </div>

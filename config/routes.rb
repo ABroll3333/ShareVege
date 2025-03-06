@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   end
  
-  root to: 'public/posts#index'
+  root to: 'public/homes#about'
   scope module: :public do
     devise_for :users
     get 'homes/about', to: 'homes#about', as: :about

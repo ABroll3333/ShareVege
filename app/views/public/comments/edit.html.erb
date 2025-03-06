@@ -16,7 +16,17 @@
               raty(elem,opt);
           </script>
         <% else %>
-          <%= render "public/posts/output_star", comment: @comment %>
+                  <script>
+              var elem = document.querySelector('#comment_raty');
+              var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: 'comment[star]',
+                  score: <%= @comment.star %>
+              };
+              raty(elem,opt);
+          </script>
+
         <% end %>
     </div>
   <%= f.submit "変更を保存" %>

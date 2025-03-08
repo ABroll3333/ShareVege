@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
-    <h5 class="text-dark bg-light py-4 mb-0">新規登録</h5>
+      <h5 class="text-dark bg-light py-4 mb-0">新規登録</h5>
 <!-- @useのモデルに関連付けられてこのフォームで送信した内容が@userモデルに存在するカラムに格納される。urlのパスにフォームが送信されることでユーザーが入力した情報がサーバーに送信されるが、デバイスを使っているためなくもていいらしい。 -->
-    <div class="form-body p-4">
-      <div class="mx-auto text-center">
-        <p>下記の項目を入力してください</p>
-      </div>
+        <div class="form-body p-4">
+          <div class="mx-auto text-center">
+          <p>下記の項目を入力してください</p>
+        </div>
       <% if @user.errors.any? %>
         <ul class="alert alert-danger text-left role=alert">
           <h6 class="alert-heading">
@@ -64,5 +64,6 @@
       <%= f.submit "新規登録", class: "btn btn-block btn-info mt-5" %>
       <%= link_to "ログイン画面へ", new_user_session_path, class: "btn btn-primary btn-block mt-5" %>
       <% end %>
-
-          
+    </div>
+  </div>
+</div>

@@ -11,6 +11,12 @@ class Public::SessionsController < Devise::SessionsController
     about_path
   end
 
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user), notice: "ゲストユーザーがログインしました"
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

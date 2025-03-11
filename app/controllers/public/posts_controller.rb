@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:edit, :new]
   def new
     #Viewで渡すためのインスタンス変数に空のModelオブジェクトを生成するための記述。Post.newをPostモデルに入れる。
     @post = Post.new
@@ -62,6 +63,11 @@ class Public::PostsController < ApplicationController
       end
     else
       redirect_to root_path
+    end
+  end
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to posts_path, notice: "ゲストユーザーは新規投稿や投稿編集画面へ遷移できません"
     end
   end
 end

@@ -1,7 +1,13 @@
 <div class="container">
   <div>
     <h3><%= @user.name %></h3>
-    <p><%= link_to "プロフィール編集", edit_user_path %></p>
+    <% if @user.email !="guest@example.com" %>
+      <div class="row">
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="row py-5">
     <% @posts.each do |post| %>

@@ -7,13 +7,17 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :comments, only: [:index, :create, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-
   end
- 
+
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+  
   root to: 'public/homes#about'
   scope module: :public do
     devise_for :users
     get 'homes/about', to: 'homes#about', as: :about
+
     resources :posts do
       resources :comments, only: [:create, :edit, :update, :destroy]
     end

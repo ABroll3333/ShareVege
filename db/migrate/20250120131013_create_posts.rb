@@ -5,7 +5,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :item
       t.integer :amount
-      t.string :address
       t.string :introduction
       t.timestamps
     end
